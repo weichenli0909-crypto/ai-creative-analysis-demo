@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI 广告素材分析 · Demo 报告集</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #333
+        }
+
+        .wrap {
+            max-width: 960px;
+            margin: 0 auto
+        }
+
+        .hero {
+            background: #fff;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .2);
+            margin-bottom: 24px
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent
+        }
+
+        .sub {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.7
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            background: #f0f0ff;
+            color: #667eea;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-right: 6px;
+            margin-top: 8px
+        }
+
+        .report-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, .15);
+            margin-bottom: 16px;
+            transition: transform .2s
+        }
+
+        .report-card:hover {
+            transform: translateY(-4px)
+        }
+
+        .report-title {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 8px
+        }
+
+        .report-meta {
+            color: #999;
+            font-size: 13px;
+            margin-bottom: 16px
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all .2s
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, .3)
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, .4)
+        }
+
+        .btn-ghost {
+            background: #f5f5f7;
+            color: #333
+        }
+
+        .btn-ghost:hover {
+            background: #e8e8ec
+        }
+
+        .footer {
+            text-align: center;
+            color: rgba(255, 255, 255, .8);
+            font-size: 12px;
+            margin-top: 24px
+        }
+
+        .footer a {
+            color: #fff
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-top: 20px
+        }
+
+        .stat {
+            background: #fafaff;
+            padding: 14px;
+            border-radius: 10px;
+            text-align: center
+        }
+
+        .stat-num {
+            font-size: 22px;
+            font-weight: bold;
+            color: #667eea
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+
+        <div class="hero">
+            <h1>🎬 AI 广告素材分析 · Demo 报告集</h1>
+            <p class="sub">
+                这里归档了工具 <b>Korean Video Analyzer</b> 跑出的真实案例报告，方便我在任何设备上浏览交互看板和归因洞察。<br>
+                工具源码（私有）：<a href="https://github.com/weichenli0909-crypto/korean-video-analyzer"
+                    target="_blank">weichenli0909-crypto/korean-video-analyzer</a>
+            </p>
+            <div>
+                <span class="tag">🇺🇸 美国</span>
+                <span class="tag">🇯🇵 日本</span>
+                <span class="tag">🇰🇷 韩国</span>
+                <span class="tag">Gemini 3.1 Pro</span>
+                <span class="tag">SLG 赛道</span>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <div class="report-title">📘 Age of Empires Mobile · 美/日/韩 跨文化归因</div>
+            <div class="report-meta">2026-05-09 · 150 条素材 · 14 个月时间跨度 · 含完整汇报稿</div>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-num">150</div>
+                    <div class="stat-label">样本总数</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">3</div>
+                    <div class="stat-label">投放市场</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">14</div>
+                    <div class="stat-label">跨度月数</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">~7min</div>
+                    <div class="stat-label">分析耗时</div>
+                </div>
+            </div>
+
+            <div class="links">
+                <a class="btn btn-primary" href="reports/2026-05-09-aoe-mobile-3countries/dashboard.html">🌐 交互看板</a>
+                <a class="btn btn-ghost" href="reports/2026-05-09-aoe-mobile-3countries/cross-country-insight.md">🧠
+                    跨国归因</a>
+                <a class="btn btn-ghost" href="reports/2026-05-09-aoe-mobile-3countries/presentation.md">📝 汇报稿</a>
+                <a class="btn btn-ghost" href="reports/2026-05-09-aoe-mobile-3countries/weekly-report.md">📊 运营周报</a>
+                <a class="btn btn-ghost" href="reports/2026-05-09-aoe-mobile-3countries/top-replicas.txt">🔥 Top
+                    复刻清单</a>
+                <a class="btn btn-ghost" href="reports/2026-05-09-aoe-mobile-3countries/report.xlsx">📘 Excel 详表</a>
+                <a class="btn btn-ghost" href="reports/2026-05-09-aoe-mobile-3countries/README.md">📖 案例说明</a>
+            </div>
+        </div>
+
+        <!-- 以后每新增一份报告，复制一个 .report-card 块即可 -->
+
+        <div class="footer">
+            🔐 本站通过 GitHub Pages 部署，数据均为公开广告素材的 AI 分析结果。<br>
+            Made with ❤️ by Ruby · <a href="https://github.com/weichenli0909-crypto" target="_blank">GitHub</a>
+        </div>
+
+    </div>
+</body>
+
+</html>
