@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="zh"><head>
+<meta charset="utf-8"><title>跨游戏交叉分析看板</title>
+<style>
+*{box-sizing:border-box}
+body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;margin:0;background:#f1f5f9;color:#0f172a}
+header{background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;padding:28px 36px}
+header h1{margin:0;font-size:24px}
+header .meta{opacity:.85;margin-top:6px;font-size:13px}
+.tabs{background:#fff;padding:0 36px;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:5}
+.tabs button{background:none;border:none;padding:14px 18px;font-size:14px;cursor:pointer;color:#475569}
+.tabs button.active{color:#2563eb;border-bottom:2px solid #2563eb;font-weight:600}
+main{padding:28px 36px;max-width:1400px;margin:0 auto}
+section{display:none;background:#fff;border-radius:12px;padding:24px 28px;margin-bottom:22px;box-shadow:0 2px 6px rgba(15,23,42,.05)}
+section.active{display:block}
+h2{margin:0 0 16px;font-size:18px;color:#1e293b}
+h3{margin:26px 0 10px;font-size:15px;color:#334155}
+.muted{color:#64748b;font-size:13px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:900px){.grid-2{grid-template-columns:1fr}}
+.kpi{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:22px}
+.kpi .card{flex:1;min-width:140px;background:#f8fafc;border-radius:10px;padding:14px 18px;border-left:4px solid #2563eb}
+.kpi .card .v{font-size:22px;font-weight:700;color:#1e40af}
+.kpi .card .k{font-size:12px;color:#64748b;margin-top:4px}
+table.heatmap{border-collapse:collapse;width:100%;font-size:13px}
+.heatmap th,.heatmap td{padding:7px 9px;border:1px solid #e2e8f0;text-align:center;min-width:40px}
+.heatmap thead th{background:#f1f5f9;font-weight:600}
+.heatmap tbody th{background:#f8fafc;text-align:left;font-weight:500}
+.bar-list{list-style:none;padding:0;margin:0}
+.bar-list li{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:13px}
+.bar-list .lbl{width:180px;color:#334155;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-list .bar{flex:1;height:8px;background:#f1f5f9;border-radius:4px;overflow:hidden}
+.bar-list .fill{display:block;height:100%;background:linear-gradient(90deg,#3b82f6,#2563eb)}
+.bar-list .val{width:120px;color:#64748b;font-size:12px;text-align:right}
+.stack-wrap .stack-row{margin:14px 0}
+.stack-row .stack-title{font-size:13px;color:#334155;margin-bottom:6px}
+.stack-bar{display:flex;height:28px;border-radius:6px;overflow:hidden;background:#f1f5f9}
+.stack-bar .seg{color:#fff;font-size:11px;padding:0 6px;display:flex;align-items:center;overflow:hidden;white-space:nowrap}
+.pair-grid{display:grid;gap:16px}
+.pair-card{background:#f8fafc;border-radius:10px;padding:16px;border-left:4px solid #10b981;display:grid;grid-template-columns:auto 1fr 1fr;gap:14px;align-items:start}
+.pair-card .pair-head{display:flex;flex-direction:column;justify-content:center}
+.pair-card .sim{background:#10b981;color:#fff;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600;white-space:nowrap}
+.pair-col{min-width:0}
+.pair-sub{font-size:13px;color:#334155;margin-bottom:4px}
+.pair-file{font-family:SFMono-Regular,Consolas,monospace;font-size:11px;color:#64748b;margin-bottom:6px;word-break:break-all}
+.pair-script{background:#fff;padding:8px 10px;border-radius:6px;font-family:SFMono-Regular,Consolas,monospace;font-size:11px;white-space:pre-wrap;margin:0;max-height:180px;overflow:auto;color:#334155;border:1px solid #e2e8f0}
+.hint{background:#fffbeb;border-left:3px solid #f59e0b;padding:12px 14px;border-radius:6px;font-size:13px;color:#78350f;margin:0 0 20px}
+</style></head><body>
+<header>
+  <h1>🎮 跨游戏交叉分析看板</h1>
+  <div class="meta">生成时间：2026-05-09 13:50 · 300 条素材 · 1 款游戏 · 来源 2 个项目</div>
+</header>
+<div class="tabs">
+  <button class="tab-btn active" data-tab="overview">📊 大盘</button>
+  <button class="tab-btn" data-tab="hook">🎯 Hook / CTA</button>
+  <button class="tab-btn" data-tab="visual">🎨 视觉 / BGM / 情绪</button>
+  <button class="tab-btn" data-tab="scripts">🧬 跨游戏剧本复用</button>
+</div>
+<main>
+  <div class="hint">💡 当前只合并到 <b>1 款游戏</b>（Age of Empires Mobile）。大盘/Hook/视觉各 Tab 依然可看，但「跨游戏剧本复用」需要 ≥2 款游戏才会生效。后续把新游戏的 <code>AI素材分析_*</code> 目录也扫出来 / 传入本脚本即可自动更新。</div>
+  <section id="overview" class="active">
+    <h2>大盘概览</h2>
+    <div class="kpi"><div class="card"><div class="v">300</div><div class="k">素材总数</div></div><div class="card"><div class="v">1</div><div class="k">游戏数</div></div><div class="card"><div class="v">3</div><div class="k">国家数</div></div><div class="card"><div class="v">8</div><div class="k">平台数</div></div><div class="card"><div class="v">5</div><div class="k">赛道数</div></div></div>
+    <h3>游戏 × 国家 热力矩阵</h3><table class="heatmap"><thead><tr><th></th><th>日本</th><th>美国</th><th>韩国</th></tr></thead><tbody><tr><th>Age of Empires Mobile</th><td style="background:rgba(37,99,235,0.37);color:#1e293b">66</td><td style="background:rgba(37,99,235,0.93);color:#fff">192</td><td style="background:rgba(37,99,235,0.27);color:#1e293b">42</td></tr></tbody></table>
+    <h3>游戏 × 平台 热力矩阵</h3><table class="heatmap"><thead><tr><th></th><th>AppLovin</th><th>Facebook</th><th>Google Ads</th><th>Instagram</th><th>TikTok</th><th>Vungle</th><th>YouTube</th><th>未知</th></tr></thead><tbody><tr><th>Age of Empires Mobile</th><td style="background:rgba(37,99,235,0.38);color:#1e293b">42</td><td style="background:rgba(37,99,235,0.26);color:#1e293b">26</td><td style="background:rgba(37,99,235,0.34);color:#1e293b">36</td><td style="background:rgba(37,99,235,0.45);color:#1e293b">52</td><td style="background:rgba(37,99,235,0.19);color:#1e293b">16</td><td style="background:rgba(37,99,235,0.11);color:#1e293b">4</td><td style="background:rgba(37,99,235,0.93);color:#fff">120</td><td style="background:rgba(37,99,235,0.11);color:#1e293b">4</td></tr></tbody></table>
+    <h3>游戏 × 赛道</h3><table class="heatmap"><thead><tr><th></th><th>SLG</th><th>SLG/RTS</th><th>SLG/模拟经营</th><th>SLG/策略</th><th>SLG/策略/塔防</th></tr></thead><tbody><tr><th>Age of Empires Mobile</th><td style="background:rgba(37,99,235,0.93);color:#fff">248</td><td style="background:rgba(37,99,235,0.09);color:#1e293b">4</td><td style="background:rgba(37,99,235,0.16);color:#1e293b">24</td><td style="background:rgba(37,99,235,0.16);color:#1e293b">22</td><td style="background:rgba(37,99,235,0.09);color:#1e293b">2</td></tr></tbody></table>
+  </section>
+  <section id="hook">
+    <h2>Hook 前 2 秒卖点分布（按游戏堆叠）</h2><div class="stack-wrap"><div class="stack-row"><div class="stack-title">Age of Empires Mobile <span class="muted">(300)</span></div><div class="stack-bar"><span class="seg" title="经典IP情怀杀：18" style="width:6.0%;background:#2563eb"></span><span class="seg" title="经典IP移植移动端：16" style="width:5.3%;background:#f59e0b"></span><span class="seg" title="经典IP回归：14" style="width:4.7%;background:#10b981"></span><span class="seg" title="情怀杀/童年回忆：12" style="width:4.0%;background:#ef4444"></span><span class="seg" title="情怀杀：10" style="width:3.3%;background:#a855f7"></span><span class="seg" title="无独立Hook：10" style="width:3.3%;background:#06b6d4"></span><span class="seg" title="经典IP情怀唤醒：6" style="width:2.0%;background:#e11d48"></span><span class="seg" title="经典PC端IP移植手机端：6" style="width:2.0%;background:#65a30d"></span><span class="seg" title="其他：208" style="width:69.3%;background:#cbd5e1">其他</span></div></div></div>
+    <h3>CTA 福利关键词（按游戏）</h3><div class="stack-wrap"><div class="stack-row"><div class="stack-title">Age of Empires Mobile <span class="muted">(300)</span></div><div class="stack-bar"><span class="seg" title="无：200" style="width:66.7%;background:#2563eb">无</span><span class="seg" title="免费：10" style="width:3.3%;background:#f59e0b"></span><span class="seg" title="兑换码AOEMGL免费10连：4" style="width:1.3%;background:#10b981"></span><span class="seg" title="GIFTCODEAOEMGL：4" style="width:1.3%;background:#ef4444"></span><span class="seg" title="画面右上角常驻礼包码：4" style="width:1.3%;background:#a855f7"></span><span class="seg" title="兑换码(GIFTCODE：4" style="width:1.3%;background:#06b6d4"></span><span class="seg" title="礼包码(GIFTCODEAO：4" style="width:1.3%;background:#e11d48"></span><span class="seg" title="常驻礼包码：2" style="width:0.7%;background:#65a30d"></span><span class="seg" title="其他：68" style="width:22.7%;background:#cbd5e1">其他</span></div></div></div>
+    <h3>口播语气（博主风格）</h3><div class="stack-wrap"><div class="stack-row"><div class="stack-title">Age of Empires Mobile <span class="muted">(300)</span></div><div class="stack-bar"><span class="seg" title="无真人：112" style="width:37.3%;background:#2563eb">无真人</span><span class="seg" title="信息干货派/专业主播腔。男性：12" style="width:4.0%;background:#f59e0b"></span><span class="seg" title="夸张表演派/专业主播腔。男性：10" style="width:3.3%;background:#10b981"></span><span class="seg" title="夸张表演派/情绪宣泄派。外形：8" style="width:2.7%;background:#ef4444"></span><span class="seg" title="信息干货派/专业主播腔。外形：6" style="width:2.0%;background:#a855f7"></span><span class="seg" title="生活分享派/游戏安利者。外形：6" style="width:2.0%;background:#06b6d4"></span><span class="seg" title="游戏解说派/专业主播腔。男性：4" style="width:1.3%;background:#e11d48"></span><span class="seg" title="夸张表演派/搞笑段子手。两名：4" style="width:1.3%;background:#65a30d"></span><span class="seg" title="其他：138" style="width:46.0%;background:#cbd5e1">其他</span></div></div></div>
+  </section>
+  <section id="visual">
+    <h2>视觉风格（场景）</h2><div class="stack-wrap"><div class="stack-row"><div class="stack-title">Age of Empires Mobile <span class="muted">(300)</span></div><div class="stack-bar"><span class="seg" title="居家室内：34" style="width:11.3%;background:#2563eb">居家室内</span><span class="seg" title="纯游戏画面：34" style="width:11.3%;background:#f59e0b">纯游戏画面</span><span class="seg" title="纯游戏画面/CG动画：32" style="width:10.7%;background:#10b981">纯游戏画面/CG动画</span><span class="seg" title="居家室内/电竞房：22" style="width:7.3%;background:#ef4444">居家室内/电竞房</span><span class="seg" title="电竞房：16" style="width:5.3%;background:#a855f7"></span><span class="seg" title="CG动画：12" style="width:4.0%;background:#06b6d4"></span><span class="seg" title="虚拟背景：10" style="width:3.3%;background:#e11d48"></span><span class="seg" title="居家室内/纯游戏画面：8" style="width:2.7%;background:#65a30d"></span><span class="seg" title="其他：132" style="width:44.0%;background:#cbd5e1">其他</span></div></div></div>
+    <h3>素材结构（3/5 段式）</h3><div class="stack-wrap"><div class="stack-row"><div class="stack-title">Age of Empires Mobile <span class="muted">(300)</span></div><div class="stack-bar"><span class="seg" title="三段式(Hook-Gamep：144" style="width:48.0%;background:#2563eb">三段式(Hook-Gamep</span><span class="seg" title="纯展示：34" style="width:11.3%;background:#f59e0b">纯展示</span><span class="seg" title="对比式(前后对比)：16" style="width:5.3%;background:#10b981"></span><span class="seg" title="剧情式(有故事线贯穿)：16" style="width:5.3%;background:#ef4444"></span><span class="seg" title="纯展示(只展示游戏画面无人声：12" style="width:4.0%;background:#a855f7"></span><span class="seg" title="拟玩主导：12" style="width:4.0%;background:#06b6d4"></span><span class="seg" title="对比式(前后对比)+三段式(：10" style="width:3.3%;background:#e11d48"></span><span class="seg" title="对比式：10" style="width:3.3%;background:#65a30d"></span><span class="seg" title="其他：46" style="width:15.3%;background:#cbd5e1">其他</span></div></div></div>
+    <h3>情绪曲线 Top Pattern</h3><div class="stack-wrap"><div class="stack-row"><div class="stack-title">Age of Empires Mobile <span class="muted">(300)</span></div><div class="stack-bar"><span class="seg" title="[{&quot;t&quot;：300" style="width:100.0%;background:#2563eb">[{&quot;t&quot;</span></div></div></div>
+  </section>
+  <section id="scripts">
+    <h2>跨游戏剧本相似度 TOP 30</h2>
+    <p class="muted">基于「完整台词 3-gram Jaccard」检测不同游戏是否沿用同一套脚本/模板。阈值：15%。</p>
+    <p class="muted">当前数据中未发现跨游戏的高相似剧本。等您导入第 2 款游戏后，重跑本脚本即可自动检测跨游戏的剧本复用/抄袭。</p>
+  </section>
+</main>
+<script>
+document.querySelectorAll('.tab-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('section').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById(b.dataset.tab).classList.add('active');
+  });
+});
+</script></body></html>
